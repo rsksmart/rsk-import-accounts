@@ -1,0 +1,16 @@
+{
+  "name": "rsk-import-keys",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Import Accounts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ethereumjs-wallet": "^1.0.1",
+    "rskapi": "0.0.16"
+  }
+}
