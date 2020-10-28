@@ -16,7 +16,7 @@ npm install
 It install two dependencies:
 
 - `ethereumjs-wallet`: to import Ethereum keystore files
-- ^rskapi`: to send JSON RPC commands to RSK node
+- `rskapi`: to send JSON RPC commands to RSK node
 
 ## Import Accounts
 
@@ -35,7 +35,7 @@ node importaccs ./keystores ./pwd.txt http://localhost:4444
 ```
 
 `https` transport is also available. In this case, you must
-provide the port EXPLICITLY, ie `http://localhost:443`
+provide the port EXPLICITLY, ie `https://localhost:443`
 
 The import command can be run many times againts the same
 RSK node: the accounts are only imported once.
