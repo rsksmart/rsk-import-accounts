@@ -4,16 +4,12 @@ const path = require('path');
 const Wallet = require('ethereumjs-wallet');
 const rskapi = require('rskapi');
 
-/*
-async function readWallet(filename, passphrase) {
-}
-
-async function sendWallet(host)
-*/
-
 const directoryPath = process.argv[2];
-const passphrase = process.argv[3];
+const passphraseFile = process.argv[3];
 const host = rskapi.host(process.argv[4]);
+
+// read the passphrase from file
+const passphrase = fs.readFileSync(passphraseFile).toString().trim();
 
 //joining path of directory 
 //passsing directoryPath and callback function
@@ -31,11 +27,6 @@ fs.readdir(directoryPath, function (err, files) {
         (async function () {
             try {
                 const result = await processFile(filename);
-                
-                if (result)
-                    console.log('file', file, 'processed');
-                else
-                    console.log('file', file, 'not processed');
             } catch (err) {
                 console.log('error', err.message, 'processing', file);
             }            
@@ -51,14 +42,9 @@ async function processFile(filename) {
     const address = wallet.getAddressString();
     const privateKey = wallet.getPrivateKeyString();
     
-    console.log('address', address);
-    console.log('private key', privateKey);    
-    
-    console.log('sending account to node');
-    
     try {
         const result = await host.importPersonalRawKey(privateKey.substring(2), passphrase);
-        console.log('account', result, 'sent');
+        console.log('account', result, 'imported into node');
         
         return true;
     }
