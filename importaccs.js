@@ -18,8 +18,19 @@ fs.readdir(directoryPath, function (err, files) {
     if (err) {
         return console.log('Unable to scan directory: ' + err);
     } 
-    //listing all files using forEach
-    files.forEach(function (file) {
+    
+    // process all filenames, one by one
+    
+    let k = 0;
+    
+    processFilename();
+    
+    function processFilename() {
+        if (k >= files.length)
+            return;
+        
+        const file = files[k];
+        
         console.log('processing file', file);
         
         const filename = path.join(directoryPath, file);
@@ -29,9 +40,13 @@ fs.readdir(directoryPath, function (err, files) {
                 const result = await processFile(filename);
             } catch (err) {
                 console.log('error', err.message, 'processing', file);
-            }            
+            }
+            
+            k++;
+            
+            processFilename();
         })();
-    });
+    };
 });
 
 async function processFile(filename) {
