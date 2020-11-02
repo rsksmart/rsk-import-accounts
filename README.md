@@ -3,7 +3,7 @@
 Script to allow the import of keystore files into a 
 running RSK node.
 
-It uses NodeJS (it was developed and tested using version `12.6.x`)
+It uses NodeJS (it was developed and tested using version `12.16.x`)
 
 ## Install
 
